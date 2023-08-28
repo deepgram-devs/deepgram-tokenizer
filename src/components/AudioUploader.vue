@@ -1,9 +1,9 @@
 <script setup>
-// import { watch } from 'vue'
 import { useFileDialog } from '@vueuse/core'
-const { files, open, onChange } = useFileDialog()
 import { useAudioStore } from '../stores/audio'
+import SpinLoader from './SpinLoader.vue'
 const audioStore = useAudioStore()
+const { files, open, onChange } = useFileDialog()
 
 onChange((file) => {
   audioStore.file.value = file[0]
@@ -20,7 +20,7 @@ onChange((file) => {
           Choose file
         </button>
 
-        <div class="" v-if="files">
+        <div class="" v-if="files && !audioStore.isTranscribing">
           <li
             class="list-none flex items-center h-full ml-8 text-[#949498]"
             v-for="file of files"
@@ -28,6 +28,9 @@ onChange((file) => {
           >
             {{ file.name }}
           </li>
+        </div>
+        <div class="ml-10">
+          <spin-loader :loadingState="audioStore.isTranscribing" loadingMessage="Transcribing..." />
         </div>
       </div>
     </div>

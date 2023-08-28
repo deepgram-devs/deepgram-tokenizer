@@ -16,6 +16,7 @@ watch(
     if (newValue) {
       text.value = newValue.transcript
       tokenizerStore.textInput = text.value
+      audioStore.transcript = ''
     }
   }
 )

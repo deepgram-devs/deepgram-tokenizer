@@ -8,7 +8,7 @@ import CustomTokenizer from '../classes/CustomTokenizer'
 export const useTokenizerStore = defineStore('tokenizer', () => {
   const textInput = ref('')
   const subwordTokens = ref([])
-  const tokenIds = ref([''])
+  const tokenIds = ref([])
   const filteredTokenIds = ref([])
   const indexHover = ref(null)
 

@@ -8,7 +8,7 @@ const COLORS = [
   'bg-[#149AFB]',
   'bg-[#039855]',
   'bg-orange-800',
-  'bg-cyan-800',
+  'bg-[#ef4ea2]',
   'bg-teal-800',
   'bg-[#7800ed]',
   'bg-indigo-700',
@@ -31,18 +31,17 @@ watch(
       const newlineElement = document.querySelector('.newline')
       if (newlineElement) {
         const brElement = document.createElement('br')
-
         newlineElement.parentNode.replaceChild(brElement, newlineElement)
       }
     }
     if (newValue === '') {
       const subwordElement = document.querySelector('.subword-pre')
-
       const spanElements = subwordElement.querySelectorAll('span')
-
       spanElements.forEach((span) => {
         span.remove()
       })
+      tokenizerStore.tokenIds = ''
+      tokenizerStore.filteredTokenIds = []
     }
   }
 )
@@ -56,15 +55,12 @@ watch(
     spanElements.forEach((span, i) => {
       if (i !== tokenizerStore.indexHover) {
         span.classList.remove(COLORS[i % COLORS.length])
-        // span.classList.add('text-raisinBlack')
       }
       if (i === tokenizerStore.indexHover) {
         span.classList.add(COLORS[i % COLORS.length])
-        // span.classList.add('text-raisinBlack')
       }
       if (tokenizerStore.indexHover === null) {
         span.classList.add(COLORS[i % COLORS.length])
-        // span.classList.add('text-white')
       }
     })
   }
