@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'ABCFavorit-Bold';
+  src: url('./fonts/ABCFavorit-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./fonts/Inter-Regular.woff');
+}
+
+html {
+  background: linear-gradient(193.95deg, #101014 3.44%, rgba(0, 0, 0, 0) 174.43%),
+    linear-gradient(270deg, #673afc -50%, #101014 100%, #673afc -100%);
+
+  color: white;
+  @apply font-inter;
+}
+
+h1 {
+  color: white;
+}

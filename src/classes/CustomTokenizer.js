@@ -51,7 +51,6 @@ export default class CustomTokenizer extends TokenizerModel {
       }
     }
 
-    console.log(subwordTokens)
     return subwordTokens
   }
 }

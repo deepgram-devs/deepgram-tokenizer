@@ -3,7 +3,6 @@ import TokenCount from './TokenCount.vue'
 import PricePrompt from './PricePrompt.vue'
 import SubwordTokens from './SubwordTokens.vue'
 import TokenIds from './TokenIds.vue'
-// import WhitespaceToggle from './WhitespaceToggle.vue'
 </script>
 
 <template>
@@ -14,6 +13,5 @@ import TokenIds from './TokenIds.vue'
     </div>
     <subword-tokens />
     <token-ids />
-    <!-- <whitespace-toggle /> -->
   </section>
 </template>

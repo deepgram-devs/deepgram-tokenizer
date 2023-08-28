@@ -1,1 +1,30 @@
 @import './base.css';
+
+:root {
+  --focus-ring-gradient: linear-gradient(90deg, #13ef93, #149afb);
+}
+
+.heading {
+  color: linear-gradient(193.95deg, #101014 3.44%, rgba(0, 0, 0, 0) 174.43%),
+    linear-gradient(270deg, #ee028b -50%, #101014 100%, #ae29ff -100%);
+}
+
+textarea:focus-visible,
+textarea:hover {
+  outline: 1px solid #3a00d3;
+  border-radius: 3px;
+}
+
+.button-primary {
+  border: none;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: var(--radius, 4px);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(40deg, #ff2eea -60%, #4b3cff);
+  height: 48px;
+  width: 233px;
+  cursor: pointer;
+}

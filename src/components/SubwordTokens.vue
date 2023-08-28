@@ -3,25 +3,25 @@ import { watch } from 'vue'
 import { useTokenizerStore } from '../stores/tokenizer'
 const tokenizerStore = useTokenizerStore()
 const COLORS = [
-  'bg-sky-200',
-  'bg-amber-200',
-  'bg-blue-200',
-  'bg-green-200',
-  'bg-orange-200',
-  'bg-cyan-200',
-  'bg-gray-200',
-  'bg-purple-200',
-  'bg-indigo-200',
-  'bg-lime-200',
-  'bg-rose-200',
-  'bg-violet-200',
-  'bg-yellow-200',
-  'bg-emerald-200',
-  'bg-zinc-200',
-  'bg-red-200',
-  'bg-fuchsia-200',
-  'bg-pink-200',
-  'bg-teal-200'
+  'bg-sky-800',
+  'bg-[#F79009]',
+  'bg-[#149AFB]',
+  'bg-[#039855]',
+  'bg-orange-800',
+  'bg-cyan-800',
+  'bg-teal-800',
+  'bg-[#7800ed]',
+  'bg-indigo-700',
+  'bg-lime-800',
+  'bg-[#bf182f]',
+  'bg-violet-800',
+  'bg-yellow-800',
+  'bg-[#00cf56]',
+  'bg-[#616165]',
+  'bg-[#D92D20]',
+  'bg-[#dd0070]',
+  'bg-pink-800',
+  'bg-teal-800'
 ]
 
 watch(
@@ -30,7 +30,6 @@ watch(
     if (newValue) {
       const newlineElement = document.querySelector('.newline')
       if (newlineElement) {
-        console.log(newlineElement)
         const brElement = document.createElement('br')
 
         newlineElement.parentNode.replaceChild(brElement, newlineElement)
@@ -47,21 +46,46 @@ watch(
     }
   }
 )
+
+watch(
+  () => tokenizerStore.indexHover,
+  () => {
+    const subwordElement = document.querySelector('.subword-pre')
+
+    const spanElements = subwordElement.querySelectorAll('span')
+    spanElements.forEach((span, i) => {
+      if (i !== tokenizerStore.indexHover) {
+        span.classList.remove(COLORS[i % COLORS.length])
+        // span.classList.add('text-raisinBlack')
+      }
+      if (i === tokenizerStore.indexHover) {
+        span.classList.add(COLORS[i % COLORS.length])
+        // span.classList.add('text-raisinBlack')
+      }
+      if (tokenizerStore.indexHover === null) {
+        span.classList.add(COLORS[i % COLORS.length])
+        // span.classList.add('text-white')
+      }
+    })
+  }
+)
 </script>
 
 <template>
   <div
-    class="subword-pre font-mono w-full rounded-md border bg-slate-50 p-4 shadow-sm border-gray-200 whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto"
+    class="subword-pre font-firaCode w-full rounded-md border bg-raisinBlack p-4 shadow-sm border-[#2C2C33] whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto"
   >
     <span
       v-for="(subwordToken, index) in tokenizerStore.subwordTokens"
       :key="subwordToken"
-      class="transition-all inline-block max-h-6 leading-3 py-1"
+      class="transition-all inline-block max-h-6 leading-3 py-1 mx-[1px]"
       :class="[
         COLORS[index % COLORS.length] +
           ' ' +
           (subwordToken === '\n' ? 'newline bg-transparent' : '')
       ]"
+      @mouseenter="tokenizerStore.setIndexHover(index)"
+      @mouseleave="tokenizerStore.setIndexHover(null)"
       >{{ subwordToken }}
     </span>
   </div>

@@ -10,6 +10,7 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
   const subwordTokens = ref([])
   const tokenIds = ref([''])
   const filteredTokenIds = ref([])
+  const indexHover = ref(null)
 
   watch(
     () => textInput.value,
@@ -32,5 +33,17 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
     filteredTokenIds.value = tokenIds.value.filter((value) => value !== undefined)
   }
 
-  return { textInput, tokenizeText, subwordTokens, tokenIds, filteredTokenIds }
+  function setIndexHover(index) {
+    indexHover.value = index
+  }
+
+  return {
+    textInput,
+    tokenizeText,
+    subwordTokens,
+    tokenIds,
+    filteredTokenIds,
+    indexHover,
+    setIndexHover
+  }
 })
