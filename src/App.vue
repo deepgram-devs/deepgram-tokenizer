@@ -1,7 +1,7 @@
 <script setup>
 import LeftColumn from './components/LeftColumn.vue'
 import RightColumn from './components/RightColumn.vue'
-import Logo from '../src/assets/images/Logo.png'
+import Logo from '../src/assets/images/logo.png'
 </script>
 
 <template>
