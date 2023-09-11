@@ -17,7 +17,9 @@ export const useAudioStore = defineStore('audio', () => {
       const formData = new FormData()
       formData.append('file', file.value.value)
       isTranscribing.value = true
-      fetch('https://deepgram-prerecorded.sandrar.repl.co/dg-transcription', {
+
+      fetch('https://dg-server.fly.dev/dg-transcription', {
+        // fetch('https://deepgram-prerecorded.sandrar.repl.co/dg-transcription', {
         method: 'POST',
         body: formData
       })

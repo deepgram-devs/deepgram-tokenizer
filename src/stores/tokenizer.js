@@ -23,9 +23,7 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
 
   async function tokenizeText() {
     const tokenizer = new CustomTokenizer(tokenizerConfig, tokenizerJson)
-
     subwordTokens.value = tokenizer.tokenize(textInput.value)
-
     tokenIds.value = subwordTokens.value.map((subword) => {
       const originalSubword = subword.trim()
       return tokenizer.tokens_to_ids.get(originalSubword)

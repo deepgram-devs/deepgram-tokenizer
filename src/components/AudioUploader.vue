@@ -17,7 +17,7 @@ onChange((file) => {
     <div class="flex flex-col">
       <div class="flex">
         <button type="button" name="file" @click="open()" class="button button-primary w-36 mr-2">
-          Choose file
+          Select Audio
         </button>
 
         <div class="" v-if="files && !audioStore.isTranscribing">

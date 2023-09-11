@@ -1,6 +1,6 @@
 <script setup>
 import TokenCount from './TokenCount.vue'
-import PricePrompt from './PricePrompt.vue'
+// import PricePrompt from './PricePrompt.vue'
 import SubwordTokens from './SubwordTokens.vue'
 import TokenIds from './TokenIds.vue'
 </script>
@@ -9,7 +9,7 @@ import TokenIds from './TokenIds.vue'
   <section class="flex flex-col gap-4">
     <div class="flex gap-4">
       <token-count />
-      <price-prompt />
+      <!-- <price-prompt /> -->
     </div>
     <subword-tokens />
     <token-ids />
