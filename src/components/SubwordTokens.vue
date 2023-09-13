@@ -69,11 +69,11 @@ watch(
 
 <template>
   <div
-    class="subword-pre font-firaCode w-full rounded-md border bg-raisinBlack p-4 shadow-sm border-[#2C2C33] whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto"
+    class="subword-pre font-firaCode w-full rounded-md border bg-raisinBlack p-4 shadow-sm border-[#2C2C33] whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto max-h-[256px]"
   >
     <span
       v-for="(subwordToken, index) in tokenizerStore.subwordTokens"
-      :key="subwordToken"
+      :key="index"
       class="transition-all inline-block max-h-6 leading-3 py-1 mx-[1px]"
       :class="[
         COLORS[index % COLORS.length] +

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.4.0",
-    "@xenova/transformers": "^2.5.3",
+    "@xenova/transformers": "^2.6.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4"
   },

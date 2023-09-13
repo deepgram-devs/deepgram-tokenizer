@@ -34,18 +34,18 @@ const getColorClass = (index) => {
 
 <template>
   <div
-    class="bg-raisinBlack min-h-[256px] max-w-[100vw] overflow-auto whitespace-prewrap break-all rounded-md border p-4 shadow-sm font-firaCode border-[#2C2C33]"
+    class="bg-raisinBlack min-h-[256px] max-w-[100vw] overflow-auto whitespace-prewrap break-all rounded-md border p-4 shadow-sm font-firaCode border-[#2C2C33] max-h-[256px]"
   >
-    <span class="transition-opacity" v-show="tokenizerStore.filteredTokenIds.length > 0"
+    <span class="transition-opacity" v-show="tokenizerStore.tokenIds.length > 0"
       >[<span
-        v-for="(value, index) in tokenizerStore.filteredTokenIds"
+        v-for="(value, index) in tokenizerStore.tokenIds"
         :key="index"
         class="transition-colors inline-block"
         :class="tokenizerStore.indexHover != null ? getColorClass(index) : ''"
         @mouseenter="tokenizerStore.setIndexHover(index)"
         @mouseleave="tokenizerStore.setIndexHover(null)"
         >{{ value
-        }}<span class="pr-2" v-if="index < tokenizerStore.filteredTokenIds.length - 1"
+        }}<span class="pr-2" v-if="index < tokenizerStore.tokenIds.length - 1"
           >,
         </span></span
       >]</span

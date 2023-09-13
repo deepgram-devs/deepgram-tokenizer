@@ -13,7 +13,7 @@ onChange((file) => {
 </script>
 
 <template>
-  <div class="rounded-md py-4">
+  <div class="rounded-md py-4 h-24">
     <div class="flex flex-col">
       <div class="flex">
         <button type="button" name="file" @click="open()" class="button button-primary w-36 mr-2">

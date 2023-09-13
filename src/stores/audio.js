@@ -1,36 +1,46 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useTokenizerStore } from './tokenizer'
+import useDeepgramKey from '../../composables/useDeepgramKey'
 
 export const useAudioStore = defineStore('audio', () => {
   const file = ref({})
   const transcript = ref('')
   const isTranscribing = ref(false)
   const clearFile = ref(false)
+  const key = ref('')
+  useDeepgramKey().then((res) => {
+    key.value = res.key.value
+  })
 
   const tokenizerStore = useTokenizerStore()
 
-  function transcribeFile() {
+  async function transcribeFile() {
     if (file.value === 0) {
       alert('Please attach a file')
     } else {
-      const formData = new FormData()
-      formData.append('file', file.value.value)
+      tokenizerStore.subwordTokens.value = []
       isTranscribing.value = true
-
-      fetch('https://dg-server.fly.dev/dg-transcription', {
-        // fetch('https://deepgram-prerecorded.sandrar.repl.co/dg-transcription', {
+      const options = {
         method: 'POST',
-        body: formData
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          transcript.value = data.apiCall.results.channels[0].alternatives[0]
-          file.value = {}
-          tokenizerStore.textInput = transcript.value
-
-          isTranscribing.value = false
-        })
+        headers: {
+          Authorization: `Token ${key.value}`
+        },
+        body: file.value.value
+      }
+      try {
+        fetch('https://api.deepgram.com/v1/listen?smart_format=true', options)
+          .then((response) => response.json())
+          .then((data) => {
+            transcript.value = data.results.channels[0].alternatives[0]
+            file.value = {}
+            tokenizerStore.textInput = transcript.value
+            isTranscribing.value = false
+          })
+          .catch((err) => console.error(err))
+      } catch (e) {
+        console.log('error', e)
+      }
     }
   }
 
