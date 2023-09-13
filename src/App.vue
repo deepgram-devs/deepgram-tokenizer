@@ -12,7 +12,9 @@ import Logo from '../src/assets/images/logo.png'
       >
         <img class="h-10 pr-2" :src="Logo" />Tokenizer
       </h1>
+     
     </div>
+     <p class="my-6 text-[#ededf2] max-w-5xl">Analyze the tokenization process of the Deepgram API and determine the total number of tokens in a given piece of audio or text.</p>
     <div class="grid gap-4 md:grid-cols-2">
       <left-column />
       <right-column />

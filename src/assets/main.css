@@ -9,9 +9,14 @@
     linear-gradient(270deg, #ee028b -50%, #101014 100%, #ae29ff -100%);
 }
 
+textarea {
+  @apply flex w-full border-[#2C2C33] bg-[#101014] placeholder:text-slate-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#2C2C33] dark:text-slate-600 min-h-[256px] rounded-[4px] border p-4 font-firaCode shadow-sm
+}
+
 textarea:focus-visible,
 textarea:hover {
   outline: 1px solid #3a00d3;
+  
   border-radius: 3px;
 }
 

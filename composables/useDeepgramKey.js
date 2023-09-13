@@ -1,8 +1,12 @@
 import { ref } from 'vue'
+import { useAudioStore } from '../src/stores/audio'
+
 let key = ref('')
 let DGStatus = ref('Deepgram Not Connected')
 
 async function getKey() {
+  const audioStore = useAudioStore()
+  audioStore.isTranscribing = true
   try {
     const res = await fetch('https://dg-server.fly.dev/deepgram-token', {
       headers: { 'Content-type': 'application/json' }

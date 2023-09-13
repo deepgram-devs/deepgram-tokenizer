@@ -40,8 +40,7 @@ watch(
       spanElements.forEach((span) => {
         span.remove()
       })
-      tokenizerStore.tokenIds = ''
-      tokenizerStore.filteredTokenIds = []
+      tokenizerStore.tokenIds = []
     }
   }
 )
@@ -69,7 +68,7 @@ watch(
 
 <template>
   <div
-    class="subword-pre font-firaCode w-full rounded-md border bg-raisinBlack p-4 shadow-sm border-[#2C2C33] whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto max-h-[256px]"
+    class="subword-pre font-firaCode w-full rounded-[4px] border bg-raisinBlack p-4 shadow-sm border-[#2C2C33] whitespace-pre-wrap text-left min-h-[256px] overflow-y-auto max-h-[256px]"
   >
     <span
       v-for="(subwordToken, index) in tokenizerStore.subwordTokens"

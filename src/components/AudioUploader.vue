@@ -13,14 +13,14 @@ onChange((file) => {
 </script>
 
 <template>
-  <div class="rounded-md py-4 h-24">
+  <div class="rounded-[4px] py-4 h-24">
     <div class="flex flex-col">
       <div class="flex">
         <button type="button" name="file" @click="open()" class="button button-primary w-36 mr-2">
           Select Audio
         </button>
 
-        <div class="" v-if="files && !audioStore.isTranscribing">
+        <div class="" v-if="files && !audioStore.isTranscribing && !audioStore.timeoutError">
           <li
             class="list-none flex items-center h-full ml-8 text-[#949498]"
             v-for="file of files"
@@ -30,8 +30,9 @@ onChange((file) => {
           </li>
         </div>
         <div class="ml-10">
-          <spin-loader :loadingState="audioStore.isTranscribing" loadingMessage="Transcribing..." />
+          <spin-loader :loadingState="audioStore.isTranscribing && !audioStore.timeoutError" loadingMessage="Transcribing..." />
         </div>
+        <div class="w-[195px] text-sm text-[#F0463A]" v-if="audioStore.timeoutError && !audioStore.isTranscribing">{{ audioStore.timeoutError }}</div>
       </div>
     </div>
   </div>

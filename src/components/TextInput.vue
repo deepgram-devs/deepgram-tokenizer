@@ -27,7 +27,7 @@ watch(
     @input="debouncedTokenize(text)"
     placeholder="Type some text..."
     v-model="text"
-    class="flex w-full border-[#2C2C33] bg-raisinBlack placeholder:text-slate-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#2C2C33] dark:text-slate-600 min-h-[256px] rounded-md border p-4 font-firaCode shadow-sm"
+    class=""
   >
   </textarea>
 </template>

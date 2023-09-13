@@ -34,7 +34,7 @@ const getColorClass = (index) => {
 
 <template>
   <div
-    class="bg-raisinBlack min-h-[256px] max-w-[100vw] overflow-auto whitespace-prewrap break-all rounded-md border p-4 shadow-sm font-firaCode border-[#2C2C33] max-h-[256px]"
+    class=" bg-raisinBlack min-h-[256px] max-w-[100vw] overflow-auto whitespace-prewrap break-all rounded-[4px] border p-4 shadow-sm font-firaCode border-[#2C2C33] max-h-[256px]"
   >
     <span class="transition-opacity" v-show="tokenizerStore.tokenIds.length > 0"
       >[<span
