@@ -10,9 +10,6 @@ export const useAudioStore = defineStore('audio', () => {
   const clearFile = ref('')
   const key = ref('')
   const timeoutError = ref('')
-  
-  
-
   const tokenizerStore = useTokenizerStore()
 
   async function transcribeFile() {

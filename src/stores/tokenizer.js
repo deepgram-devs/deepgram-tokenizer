@@ -17,28 +17,6 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
     }
   )
 
-  // function pretokenize() {
-  //   const pattern = /[^\s.,!?…。，、।۔،]+|[.,!?…。，、।۔،]+/g
-  //   const subtokens = textInput.value.match(pattern) || []
-  //   subwordTokens.value = subtokens
-  //   return subtokens
-  // }
-
-  // function postprocessSubtokens() {
-  //   let processedSubtokens = subwordTokens.value.map((subtoken, index) => {
-  //     if (index === 0) {
-  //       return subtoken
-  //     }
-  //     if (/^[.,!?…。，、।۔،]+$/.test(subtoken)) {
-  //       return subtoken
-  //     } else {
-  //       return ' ' + subtoken
-  //     }
-  //   })
-  //   subwordTokens.value = processedSubtokens
-  //   return processedSubtokens
-  // }
-
   const replacements = {'\\\\': '\\', '\\n': '\n', '\\"': '"'};
 
   function slashUnescape(contents) {
@@ -47,12 +25,8 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
       });
   }
 
-  async function tokenizeText() {
-    // pretokenize()
-    // postprocessSubtokens()
-    
+  async function tokenizeText() {    
     const escaped = slashUnescape(textInput.value)
-
     let tokenizer = await AutoTokenizer.from_pretrained("Xenova/bloomz-560m")
     tokenIds.value = tokenizer.encode(escaped)
     let decoded = tokenIds.value.map(x => tokenizer.decode([x]));
