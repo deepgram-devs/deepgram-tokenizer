@@ -21,18 +21,22 @@ onChange((file) => {
         </button>
 
         <div class="" v-if="files && !audioStore.isTranscribing && !audioStore.timeoutError">
-          <li
-            class="list-none flex items-center h-full ml-8 text-[#949498]"
-            v-for="file of files"
-            :key="file.name"
-          >
-            {{ file.name }}
+          <li class="list-none flex items-center h-full ml-4 text-[#949498]">
+            {{ audioStore.shortenedFilename }}
           </li>
         </div>
         <div class="ml-10">
-          <spin-loader :loadingState="audioStore.isTranscribing && !audioStore.timeoutError" loadingMessage="Transcribing..." />
+          <spin-loader
+            :loadingState="audioStore.isTranscribing && !audioStore.timeoutError"
+            loadingMessage="Transcribing..."
+          />
         </div>
-        <div class="w-[195px] text-sm text-[#F0463A]" v-if="audioStore.timeoutError && !audioStore.isTranscribing">{{ audioStore.timeoutError }}</div>
+        <div
+          class="w-[195px] text-md text-[#F0463A] font-bold"
+          v-if="audioStore.timeoutError && !audioStore.isTranscribing"
+        >
+          {{ audioStore.timeoutError }}
+        </div>
       </div>
     </div>
   </div>
