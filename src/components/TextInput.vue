@@ -35,7 +35,6 @@ watch(textInput, (newValue) => {
   if (newValue.length > 125000 && fileName.value.length === 0) {
     textSizeWarning.value = true
   } else {
-    console.log('hit')
     // otherwise, tokenize the text/audio
     textSizeWarning.value = false
     tokenizerStore.tokenizeText()

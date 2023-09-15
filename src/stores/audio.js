@@ -86,7 +86,6 @@ export const useAudioStore = defineStore('audio', () => {
   })
 
   function clearAudio() {
-    console.log('hit')
     file.value = {}
     transcript.value = ''
     isTranscribing.value = false

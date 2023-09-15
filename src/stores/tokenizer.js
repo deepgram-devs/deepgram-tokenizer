@@ -19,7 +19,6 @@ export const useTokenizerStore = defineStore('tokenizer', () => {
   }
 
   async function tokenizeText() {
-    console.log('tokenize', textInput.value)
     const escaped = slashUnescape(textInput.value)
     let tokenizer = await AutoTokenizer.from_pretrained('Xenova/bloomz-560m')
     tokenIds.value = tokenizer.encode(escaped)
