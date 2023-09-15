@@ -3,7 +3,9 @@ import { useFileDialog } from '@vueuse/core'
 import { useAudioStore } from '../stores/audio'
 import SpinLoader from './SpinLoader.vue'
 const audioStore = useAudioStore()
-const { files, open, onChange } = useFileDialog()
+const { files, open, onChange } = useFileDialog({
+  accept: 'audio/*'
+})
 
 onChange((file) => {
   audioStore.file.value = file[0]
