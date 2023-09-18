@@ -1,7 +1,19 @@
 <script setup>
+import { onMounted, nextTick } from 'vue'
 import LeftColumn from './components/LeftColumn.vue'
 import RightColumn from './components/RightColumn.vue'
 import Logo from '../src/assets/images/logo.png'
+
+onMounted(() => {
+  nextTick(() => {
+    let script = document.createElement('script')
+    script.text = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-M5WQMGR');`
+    script.id = 'google-tag-manager'
+    script.setAttribute('async', '')
+    script.type = 'text/javascript'
+    document.body.appendChild(script)
+  })
+})
 </script>
 
 <template>
