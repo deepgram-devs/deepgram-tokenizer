@@ -14,9 +14,13 @@ To install the dependencies for this application, run the following command in y
 
 ## Usage
 
-To run the application, navigate to the root directory of the project and run the following command:
+To build the application, navigate to the root directory of the project and run the following command:
 
-`npm run serve`
+`npm run build`
+
+To preview the application, navigate to the root directory of the project and run the following command:
+
+`npm run preview`
 
 
 This will start the development server and open the application in your default web browser.
