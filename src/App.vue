@@ -28,7 +28,13 @@ onMounted(() => {
     </div>
     <p class="text-sm sm:text-base my-6 text-[#ededf2] max-w-5xl">
       Analyze the tokenization process of the Deepgram API and determine the total number of tokens
-      in a given piece of audio or text.  <a href="https://developers.deepgram.com/docs/summarization" style="text-decoration: underline;">Supports Summarization DSLM</a> models only.
+      in a given piece of audio or text. Supports
+      <a
+        href="https://developers.deepgram.com/docs/summarization"
+        class="text-[#13EF93] hover:underline"
+        >Summarization DSLM</a
+      >
+      models only.
     </p>
     <div class="grid gap-4 md:grid-cols-2">
       <left-column />
