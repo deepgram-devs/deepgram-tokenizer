@@ -28,3 +28,7 @@ To avoid generating a Deploy Preview for a pull/merge request, add [skip ci] or 
 ## Local Development
 
 TBD
+
+## Backend
+
+The backend server for this project was deployed with Fly.io. The project code for the backend can be found here https://github.com/deepgram-devs/deepgram-server/tree/main.
