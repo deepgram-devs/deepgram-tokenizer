@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import useDeepgramKey from '../../composables/useDeepgramKey'
+import { createClient } from '@deepgram/sdk'
 
 export const useAudioStore = defineStore('audio', () => {
   const file = ref({})
@@ -11,60 +12,61 @@ export const useAudioStore = defineStore('audio', () => {
   const key = ref('')
   const timeoutError = ref(false)
 
+  // async function transcribeFile() {
+  //   if (!file.value) {
+  //     alert('Please attach a file')
+  //   } else {
+  //     fileName.value = file.value.value.name
+  //     useDeepgramKey().then((res) => {
+  //       key.value = res.key.value
+  //       isTranscribing.value = true
+  //       timeoutError.value = ''
+  //       const controller = new AbortController()
+  //       const signal = controller.signal
+  //       const timeoutId = setTimeout(() => {
+  //         controller.abort()
+  //         console.log('Request aborted due to timeout')
+  //         isTranscribing.value = false
+  //       }, 40000)
+
+  //       const deepgram = createClient(key.value)
+  //       console.log(deepgram)
+  //       const { result, error } = await deepgram.listen.prerecorded.transcribeFile(file.value.value, {
+  //         punctuate: true,
+  //         model: 'nova'
+  //       })
+  //       if (error) throw error
+  //       console.dir(result)
+  //     })
+  //   }
+  // }
+
   async function transcribeFile() {
     if (!file.value) {
       alert('Please attach a file')
     } else {
       fileName.value = file.value.value.name
-      useDeepgramKey().then((res) => {
+      try {
+        const res = await useDeepgramKey()
         key.value = res.key.value
         isTranscribing.value = true
         timeoutError.value = ''
-        const controller = new AbortController()
-        const signal = controller.signal
-        const timeoutId = setTimeout(() => {
-          controller.abort()
-          console.log('Request aborted due to timeout')
-          isTranscribing.value = false
-        }, 40000)
 
-        const options = {
-          method: 'POST',
-          signal: signal,
-          headers: {
-            Authorization: `Token ${key.value}`
-          },
-          body: file.value.value
-        }
-        try {
-          fetch('https://api.deepgram.com/v1/listen?smart_format=true', options)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error('Network response was not ok')
-              }
-              return response.json()
-            })
-            .then((data) => {
-              clearTimeout(timeoutId)
-              transcript.value = data.results.channels[0].alternatives[0]
-              file.value = {}
-              isTranscribing.value = false
-              setTimeout(() => {
-                fileName.value = ''
-              }, 1500)
-            })
-            .catch((error) => {
-              if (error.name === 'AbortError') {
-                console.log('Request was aborted')
-                timeoutError.value = 'Your request failed to process. Please try again.'
-              } else {
-                console.error('Error:', error)
-              }
-            })
-        } catch (e) {
-          console.log('error', e)
-        }
-      })
+        // DEEPGRAM API CALL HERE:
+        const deepgram = createClient(key.value)
+        console.log(deepgram)
+        const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
+          file.value.value,
+          {
+            punctuate: true,
+            model: 'nova'
+          }
+        )
+        if (error) throw error
+        console.dir(result)
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
     }
   }
 
