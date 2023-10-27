@@ -10,7 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@deepgram/sdk": "^3.0.0-alpha.10",
+    "@deepgram/sdk": "file:../../deepgram/deepgram-node-sdk",
     "@vueuse/core": "^10.4.0",
     "@xenova/transformers": "^2.6.0",
     "pinia": "^2.1.6",

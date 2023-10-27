@@ -53,8 +53,10 @@ export const useAudioStore = defineStore('audio', () => {
         timeoutError.value = ''
 
         // DEEPGRAM API CALL HERE:
-        const deepgram = createClient(key.value)
-        console.log(deepgram)
+        const deepgram = createClient(key.value, {
+          restProxy: { url: 'http://localhost:8080' }
+        })
+
         const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
           file.value.value,
           {
