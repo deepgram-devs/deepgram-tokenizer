@@ -1,6 +1,5 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import useDeepgramKey from '../../composables/useDeepgramKey'
 import { createClient } from '@deepgram/sdk'
 
 export const useAudioStore = defineStore('audio', () => {
@@ -9,37 +8,7 @@ export const useAudioStore = defineStore('audio', () => {
   const transcript = ref('')
   const isTranscribing = ref(false)
   const clearFile = ref('')
-  const key = ref('')
   const timeoutError = ref(false)
-
-  // async function transcribeFile() {
-  //   if (!file.value) {
-  //     alert('Please attach a file')
-  //   } else {
-  //     fileName.value = file.value.value.name
-  //     useDeepgramKey().then((res) => {
-  //       key.value = res.key.value
-  //       isTranscribing.value = true
-  //       timeoutError.value = ''
-  //       const controller = new AbortController()
-  //       const signal = controller.signal
-  //       const timeoutId = setTimeout(() => {
-  //         controller.abort()
-  //         console.log('Request aborted due to timeout')
-  //         isTranscribing.value = false
-  //       }, 40000)
-
-  //       const deepgram = createClient(key.value)
-  //       console.log(deepgram)
-  //       const { result, error } = await deepgram.listen.prerecorded.transcribeFile(file.value.value, {
-  //         punctuate: true,
-  //         model: 'nova'
-  //       })
-  //       if (error) throw error
-  //       console.dir(result)
-  //     })
-  //   }
-  // }
 
   async function transcribeFile() {
     if (!file.value) {
@@ -47,13 +16,10 @@ export const useAudioStore = defineStore('audio', () => {
     } else {
       fileName.value = file.value.value.name
       try {
-        const res = await useDeepgramKey()
-        key.value = res.key.value
         isTranscribing.value = true
         timeoutError.value = ''
 
-        // DEEPGRAM API CALL HERE:
-        const deepgram = createClient(key.value, {
+        const deepgram = createClient('proxy', {
           restProxy: { url: 'http://localhost:8080' }
         })
 
