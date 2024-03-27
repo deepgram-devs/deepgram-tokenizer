@@ -7,7 +7,7 @@ and determines the total number of tokens in a given piece of audio or text.
 
 To install the dependencies for this application, run the following command in your terminal:
 
-`npm install``
+`npm install`
 
 ## Usage
 
